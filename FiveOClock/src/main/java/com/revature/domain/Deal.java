@@ -28,18 +28,22 @@ public class Deal implements Serializable{
 	
 	@Column(name = "END_TIME")
 	private int endTime;
+
+	@Column(name = "STATUS")
+	private String status;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="VENUE_ID")
 	private Venue venue;
 
-	public Deal(String type, String description, double price, int startTime, int endTime, Venue venue) {
+	public Deal(String type, String description, double price, int startTime, int endTime, Venue venue, String status) {
 		super();
 		this.type = type;
 		this.description = description;
 		this.price = price;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.status = status;
 		this.venue = venue;
 	}
 

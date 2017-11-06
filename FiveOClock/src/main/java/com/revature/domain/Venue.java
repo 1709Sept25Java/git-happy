@@ -21,10 +21,13 @@ public class Venue implements Serializable{
 	@Column(name = "ADDRESS")
 	private String address;
 	
+	@Column(name = "PHONE")
+	private int phone;
+	
 	@OneToMany(mappedBy="venue",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	private List<Deal> deals;
 
-	public Venue(String venueName, String address) {
+	public Venue(String venueName, String address, int phone) {
 		super();
 		this.venueName = venueName;
 		this.address = address;
