@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MAP</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/MapWAutoStyle.css">
+    <script text="text/javascript"  src="scripts/Index.js"></script>
+  </head>
+  <body>
+    <div class="bar" id="bar">
+      <div>
+        <div id="title">
+           Search
+        </div>
+        <div id="type-selector" class="control">
+          <label for="changetype-all"></label>
+        </div>
+      </div>
+      <div id="container">
+        <input id="input" type="text"
+            placeholder="Get Happy">
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span>
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&libraries=places&callback=initMap"
+        async defer></script>
+  </body>
+</html>
