@@ -106,5 +106,18 @@ public class Deal implements Serializable{
 	public void setVenue(Venue venue) {
 		this.venue = venue;
 	}
+
+	public String toStringWithVenue() {
+		return "Deal [dealId=" + dealId + ", type=" + type + ", description=" + description + ", price=" + price
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", status=" + status + ", venue=" + venue + "]";
+	}
+
+	@Override
+	public String toString() {
+		return "Deal [dealId=" + dealId + ", type=" + type + ", description=" + description + ", price=" + price
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", status=" + status + "]";
+	}
+	
+	
 	
 }
