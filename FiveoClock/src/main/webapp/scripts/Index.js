@@ -1,5 +1,5 @@
-
-function initMap() {
+var submit = document.getElementById("submit").addEventListener("click", initMap());
+function initMap(){
 	var map = new google.maps.Map(document.getElementById('map'), {
 		center : {
 			lat : 40.730610,
@@ -9,13 +9,13 @@ function initMap() {
 	});
 	var card = document.getElementById('bar');
 	var input = document.getElementById('input');
-	var types = document.getElementById('type-selector');
-	var strictBounds = document.getElementById('strict-bounds-selector');
+	//var types = document.getElementById('type-selector');
+	//var strictBounds = document.getElementById('strict-bounds-selector');
 
 	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
 	var autocomplete = new google.maps.places.Autocomplete(input);
-	
+
 	autocomplete.bindTo('bounds', map);
 
 	var infowindow = new google.maps.InfoWindow();
@@ -40,7 +40,7 @@ function initMap() {
 			map.fitBounds(place.geometry.viewport);
 		} else {
 			map.setCenter(place.geometry.location);
-			map.setZoom(17); 
+			map.setZoom(17);
 		}
 		marker.setPosition(place.geometry.location);
 		marker.setVisible(true);
@@ -62,21 +62,4 @@ function initMap() {
 		infowindowContent.children['place-address'].textContent = address;
 		infowindow.open(map, marker);
 	});
-
-	function setupClickListener(id, types) {
-		var radioButton = document.getElementById(id);
-		radioButton.addEventListener('click', function() {
-			autocomplete.setTypes(types);
-		});
-	}
-
-	setupClickListener('changetype-all', []);
-
-	document.getElementById('use-strict-bounds').addEventListener('click',
-			function() {
-				console.log('Checkbox clicked! New state=' + this.checked);
-				autocomplete.setOptions({
-					strictBounds : this.checked
-				});
-			});
-}
+};

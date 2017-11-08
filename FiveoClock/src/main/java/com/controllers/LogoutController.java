@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-//@RequestMapping(value = "/login")
+@RequestMapping(value="/logout")
+public class LogoutController {
 
-public class LoginController {
-
-	@RequestMapping(value = "/login",method=RequestMethod.POST)
-	public String sayHello() {
-		return "Login";
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logout() {
+		return "Goodbye";
 	}
-
 }
