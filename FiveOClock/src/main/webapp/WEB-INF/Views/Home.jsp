@@ -9,7 +9,13 @@
 </head>
 <body>
 <h2 id="heading">Happy Hour Deals Near ${location}</h2>
-
+<div>Refine Search: 
+<form action="filter" style="display:inline;">
+  <input type="checkbox" name="type" value="beer" checked> Beer
+  <input type="checkbox" name="type" value="wine" checked> Wine
+  <input type="checkbox" name="type" value="cocktails" checked> Cocktails
+</form>
+</div>
 <table id="dealTable">
 	<tr>
 		<th class="typeRow">Type</th>
