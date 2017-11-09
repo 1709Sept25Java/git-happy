@@ -8,10 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Happy Hour Deals Near ${location}</p>
+<h2 id="heading">Happy Hour Deals Near ${location}</h2>
+
+<table id="dealTable">
+	<tr>
+		<th class="typeRow">Type</th>
+		<th class="priceRow">Price</th>
+		<th class="descriptionRow">Description</th>
+		<th class="distanceRow">Distance</th>
+	<tr>
+</table>
 
 
-<script src="<c:url value="/resources/DealScript.js" />"></script>
+<script src="<c:url value="/resources/Scripts/DealScript.js" />"></script>
 
 </body>
 </html>

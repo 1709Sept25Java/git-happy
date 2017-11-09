@@ -20,7 +20,7 @@
 
 
 </body>
-<script src="<c:url value="/resources/Search.js" />"></script>
+<script src="<c:url value="/resources/Scripts/Search.js" />"></script>
 
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&libraries=places&callback=initMap"

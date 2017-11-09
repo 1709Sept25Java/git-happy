@@ -13,13 +13,19 @@ import com.revature.util.HibernateUtil;
 public class DealDaoImpl implements DealDao{
 
 	public String getDealsJSON(Session s) throws JsonProcessingException {
-		List<Deal> dealList = s.createCriteria(Deal.class).addOrder(Order.asc("price")).list();
+		List<Deal> dealList = s.createCriteria(Deal.class).addOrder(Order.desc("price")).list();
+		String dealJSON = "{ ";
+		int count = 0;
 		for (Deal d : dealList) {
+			if(count>0) {
+				dealJSON = dealJSON + " , ";
+			}
+			count++;
 			d.getVenue().setDeals(null);
+			dealJSON = dealJSON + "\""+d.getDealId() +"\" : { \"type\" : \"" + d.getType()+ "\" , \"description\" : \""+d.getDescription() + "\" ,\"price\" : \""+d.getPrice()+"\", \"startTime\" : \""+d.getStartTime()+"\", \"endTime\" : \""+d.getEndTime()+ "\", \"venue\" : { \"venueId\" : \""+d.getVenue().getVenueId()+"\", \"venueName\" : \""+d.getVenue().getVenueName()+"\", \"address\" : \""+d.getVenue().getAddress()+"\" } }";
 		}
-		ObjectMapper om = new ObjectMapper();
-		String dealJSON = om.writeValueAsString(dealList);
-		return dealJSON;
+		//{"dealId":31,"type":"Beer","description":"PBR","price":3.0,"startTime":1500,"endTime":2000,"venue":{"venueId":10,"venueName":"Bar Matchless","address":"557 Manhattan Ave Brooklyn, NY 11222","deals":null}},{"dealId":34,"type":"Wells","description":"shots of wells","price":3.0,"startTime":1100,"endTime":2000,"venue":{"venueId":11,"venueName":"Black Swan","address":"1048 Bedford Ave New York, NY 11205","deals":null}}
+		return dealJSON+" }";
 	}
 
 }
