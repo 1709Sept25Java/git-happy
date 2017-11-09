@@ -9,8 +9,6 @@ function initMap(){
 	});
 	var card = document.getElementById('bar');
 	var input = document.getElementById('input');
-	//var types = document.getElementById('type-selector');
-	//var strictBounds = document.getElementById('strict-bounds-selector');
 
 	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 

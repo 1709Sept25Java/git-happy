@@ -20,7 +20,8 @@ public class Driver {
 
 		 init();
 		 DealDaoImpl dd = new DealDaoImpl();
-		 dd.getDealsJSON();
+		 //dd.getDealsJSON();
+		 dealByType("Beer");
 	}
 
 	public static void init() {

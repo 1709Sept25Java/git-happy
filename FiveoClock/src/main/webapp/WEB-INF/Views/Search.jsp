@@ -8,6 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>you made it home</h1>
+	<form action="home" method="post">
+		<input id="input" class="controls" type="text" placehold="getHappy">
+		<input type="submit" value="submit" id="submit">
+	</form>
+	<div id="map"></div>
+
+  
 </body>
+  <script type="text/javascript" src="scripts/Search.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&libraries=places&callback=initMap"
+         async defer></script> 
 </html>
