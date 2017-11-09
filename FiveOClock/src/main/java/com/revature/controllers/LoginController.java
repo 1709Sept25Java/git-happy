@@ -26,7 +26,7 @@ public class LoginController {
 		//default:
 		//return Login/unsuccessful}
 		
-		return "Login"; //return Login/failure
+		return "Home"; //return Login/failure
 	}
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)

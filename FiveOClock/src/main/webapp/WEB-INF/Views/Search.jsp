@@ -7,8 +7,6 @@
 <meta charset="ISO-8859-1">
 <title>Search</title>
 
-
-
 </head>
 <body>
 	<form action="search" method="POST">

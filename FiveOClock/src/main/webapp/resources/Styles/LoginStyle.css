@@ -1,0 +1,44 @@
+body {
+	background:
+		url(http://viewthevibe.com/wp-content/uploads/2015/04/thin-happy-hour-drinks-ftr.jpg)
+		no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#contentDiv {
+	background-color: #2a0000;
+	opacity: 0.8;
+	text-align: center;
+	margin: auto;
+    width: 70%;
+    position : relative;
+    top: 300px;
+	padding : 20px;
+	padding-bottom : 45px;
+	border-radius : 20px;
+	
+}
+
+input {
+	border-radius: 5px;
+}
+
+input, textarea {
+	background-color: #eef0b7;
+	opacity: 1;
+}
+
+#header{
+	color:#eef0b7;
+	opacity:1;
+	font-size : 60px;
+}
+
+.glyphicon {
+    font-size: 30px;
+    color : #eef0b7;
+    /* margin-top : 10px; */
+}

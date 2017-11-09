@@ -1,3 +1,5 @@
+document.getElementById("filterForm").addEventListener("change", filter)
+
 window.onload = function() {
 	sendAjaxGet('http://localhost:8082/FiveOClock/deals', print2console);
 	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals);
@@ -96,3 +98,9 @@ function getDistanceFromAPI() {
 	ApiDist = ApiRes.rows.elements.distance.text;
 
 }
+
+function filter(){
+	console.log("weee check box changed!");
+}
+//TODO: create function to set all rows with class for type not checked display:none
+//		when they are rechecked they reappear
