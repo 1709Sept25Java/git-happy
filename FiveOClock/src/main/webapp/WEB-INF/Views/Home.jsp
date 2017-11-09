@@ -8,11 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-home page
+<p>Happy Hour Deals Near ${location}</p>
 
 
 <script src="<c:url value="/resources/DealScript.js" />"></script>
-<script>
-console.log("inline script works")</script>
+
 </body>
 </html>
