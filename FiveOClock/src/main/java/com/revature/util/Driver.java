@@ -12,10 +12,18 @@ public class Driver {
 	public static void main(String[] args) throws JsonProcessingException {
 //		init1();
 //		init2();
+//		Session s = HibernateUtil.getSession();
+//		Transaction tx = s.beginTransaction();
+//		User u1 = new User("user@gmail.com","password");
+//		User u2 = new User("victoria@gmail.com","pass123",true);
+//		User u3 = new User("carolyn@gmail.com","password",true);
+//		s.save(u1);
+//		s.save(u2);
+//		s.save(u3);
+//		tx.commit();
+//		s.close();
 		
-		Session s = HibernateUtil.getSession();
-		DealDaoImpl deals = new DealDaoImpl();
-		System.out.println(deals.getDealsJSON(s));
+
 	}
 
 	public static void init1() {

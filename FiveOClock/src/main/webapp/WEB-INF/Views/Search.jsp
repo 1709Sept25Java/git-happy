@@ -21,6 +21,5 @@
 <script src="<c:url value="/resources/Scripts/Search.js" />"></script>
 
 <script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&libraries=places&callback=initMap"
-	async defer></script>
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&libraries=places&callback=initMap"async defer></script>
 </html>

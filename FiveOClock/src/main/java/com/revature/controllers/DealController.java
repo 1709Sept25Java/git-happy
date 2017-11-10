@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.revature.dao.DealDaoImpl;
-import com.revature.dao.Sessions;
 import com.revature.service.DealService;
-import com.revature.util.HibernateUtil;
+
 
 @Controller
 public class DealController {
