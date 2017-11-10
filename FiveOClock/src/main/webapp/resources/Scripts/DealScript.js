@@ -92,15 +92,25 @@ function callback(response, status) {
 function filter() {
 	console.log("weee check box changed!");
 	checkBoxes = document.getElementsByClassName("checkBox");
-	for (i = 0 ; i<checkBoxes.length ; i++){
+	for (i = 0; i<checkBoxes.length ; i++){
 		if(!checkBoxes[i].checked){
-			type = checkBoxes[i].innerHTML;
-			console.log(type+"not checked");
-			typeCells = document.getElementsByClassName("typeRow");
-			console.log(typeCells)
-			for (j = 0; j<typeCells.length ; j++){
+			type = checkBoxes[i].id;
+			console.log(type);
+			typeCells = document.getElementsByClassName("type-cell");
+			for (j = 0; j<typeCells.length; j++){
+				console.log(typeCells[j].innerHTML);
 				if(typeCells[j].innerHTML == type){
-					typeCells[j].setAttribute("style","display: none;");
+					typeCells[j].parentNode.setAttribute("style","display: none;");
+				}
+			}
+		} if(checkBoxes[i].checked){
+			type = checkBoxes[i].id;
+			console.log(type);
+			typeCells = document.getElementsByClassName("type-cell");
+			for (j = 0; j<typeCells.length; j++){
+				console.log(typeCells[j].innerHTML);
+				if(typeCells[j].innerHTML == type){
+					typeCells[j].parentNode.removeAttribute("style");
 				}
 			}
 		}
