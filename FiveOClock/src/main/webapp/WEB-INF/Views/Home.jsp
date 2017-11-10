@@ -11,9 +11,9 @@
 <h2 id="heading">Happy Hour Deals Near ${location}</h2>
 <div>Refine Search: 
 <form id="filterForm" style="display:inline;">
-  <input type="checkbox" name="type" value="beer" checked> Beer
-  <input type="checkbox" name="type" value="wine" checked> Wine
-  <input type="checkbox" name="type" value="cocktails" checked> Cocktails
+  <input type="checkbox" name="type" value="beer" class = "checkBox" checked/> Beer
+  <input type="checkbox" name="type" value="wine" class = "checkBox" checked/> Wine
+  <input type="checkbox" name="type" value="cocktails" class = "checkBox" checked/> Cocktails
 </form>
 </div>
 <table id="dealTable">
@@ -24,6 +24,8 @@
 		<th class="distanceRow">Distance</th>
 	<tr>
 </table>
+
+
 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&sensor=false"></script>
 <script src="<c:url value="/resources/Scripts/DealScript.js" />"></script>

@@ -9,6 +9,7 @@
 
 </head>
 <body>
+<h4>Where are you looking for happy hour deals?</h4>
 	<form action="search" method="POST">
 		<input id="input" name="input" class="controls" type="text"
 			placeholder="Enter location" style="width: 250px;"> <input
