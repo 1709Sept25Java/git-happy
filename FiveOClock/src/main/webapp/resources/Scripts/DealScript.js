@@ -49,9 +49,13 @@ function postDeals(xhr) {
 	}
 }
 
-
+service = new google.maps.DistanceMatrixService();
 function getDistance(destination) {
-	origin = document.getElementById();
+	count = 0;
+	origin = document.getElementById("heading").innerHTML;
+	origin = origin.substring(22);
+	console.log(origin);
+	console.log(destination);
 	service.getDistanceMatrix({
 		origins : [ origin ],
 		destinations : [ destination ],
@@ -63,7 +67,9 @@ function getDistance(destination) {
 }
 function callback(response, status) {
 	if (status == "OK") {
-		console.log(response.rows[0].elements[0].distance.text);
+		distanceCells = document.getElementsByClassName("distance-cell");
+		distanceCells[count].innerHTML = response.rows[0].elements[0].distance.text
+		count++;
 	} else {
 		alert("Error: " + status);
 	}
