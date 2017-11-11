@@ -1,4 +1,9 @@
-document.getElementById("filterForm").addEventListener("change", filter)
+input = document.getElementById("timeInput");
+var d = new Date();
+currentTime = d.getHours() + ":" + d.getMinutes();
+input.setAttribute("value", currentTime);
+timeNum = " " + d.getHours() + d.getMinutes();
+timeNum = timeNum.trim();
 
 window.onload = function() {
 	sendAjaxGet('http://localhost:8082/FiveOClock/deals', print2console);
@@ -32,19 +37,28 @@ function postDeals(xhr) {
 	res = JSON.parse(res);
 	table = document.getElementById("dealTable");
 	for (x in res) {
-		row = table.insertRow();
-		typeCell = row.insertCell();
-		typeCell.setAttribute("class", "type-cell");
-		typeCell.innerHTML = res[x].type;
-		priceCell = row.insertCell();
-		priceCell.setAttribute("class", "price-cell");
-		priceCell.innerHTML = "$" + res[x].price + "0";
-		descriptionCell = row.insertCell();
-		descriptionCell.setAttribute("class", "description-cell");
-		descriptionCell.innerHTML = res[x].description;
-		distanceCell = row.insertCell();
-		distanceCell.setAttribute("class", "distance-cell");
-		getDistance(res[x].venue.address);
+		console.log(res[x].startTime);
+		console.log(res[x].startTime);
+		if (res[x].startTime < timeNum < res[x].startTime) {
+			row = table.insertRow();
+			row.addEventListener("click", function link() {
+				window.location.href = "venue/" + x
+			});
+			typeCell = row.insertCell();
+			typeCell.setAttribute("class", "type-cell");
+			typeCell.innerHTML = res[x].type;
+			priceCell = row.insertCell();
+			priceCell.setAttribute("class", "price-cell");
+			priceCell.innerHTML = "$" + res[x].price + "0";
+			descriptionCell = row.insertCell();
+			descriptionCell.setAttribute("class", "description-cell");
+			descriptionCell.innerHTML = res[x].description;
+			distanceCell = row.insertCell();
+			distanceCell.setAttribute("class", "distance-cell");
+			getDistance(res[x].venue.address);
+		} else {
+			continue;
+		}
 	}
 	setTimeout(sortDistances, 1000);
 }
@@ -89,36 +103,37 @@ function callback(response, status) {
 	}
 }
 
+// ////////////event listener and function to filter results by type///////////
+document.getElementById("filterForm").addEventListener("change", filter);
 function filter() {
 	console.log("weee check box changed!");
 	checkBoxes = document.getElementsByClassName("checkBox");
-	for (i = 0; i<checkBoxes.length ; i++){
-		if(!checkBoxes[i].checked){
+	for (i = 0; i < checkBoxes.length; i++) {
+		if (!checkBoxes[i].checked) {
 			type = checkBoxes[i].id;
 			console.log(type);
 			typeCells = document.getElementsByClassName("type-cell");
-			for (j = 0; j<typeCells.length; j++){
+			for (j = 0; j < typeCells.length; j++) {
 				console.log(typeCells[j].innerHTML);
-				if(typeCells[j].innerHTML == type){
-					typeCells[j].parentNode.setAttribute("style","display: none;");
+				if (typeCells[j].innerHTML == type) {
+					typeCells[j].parentNode.setAttribute("style",
+							"display: none;");
 				}
 			}
-		} if(checkBoxes[i].checked){
+		}
+		if (checkBoxes[i].checked) {
 			type = checkBoxes[i].id;
 			console.log(type);
 			typeCells = document.getElementsByClassName("type-cell");
-			for (j = 0; j<typeCells.length; j++){
+			for (j = 0; j < typeCells.length; j++) {
 				console.log(typeCells[j].innerHTML);
-				if(typeCells[j].innerHTML == type){
+				if (typeCells[j].innerHTML == type) {
 					typeCells[j].parentNode.removeAttribute("style");
 				}
 			}
 		}
 	}
 }
-// TODO: create function to set all rows with class for type not checked
-// display:none
-// when they are rechecked they reappear
 
 function sortDistances() {
 	distanceCells = document.getElementsByClassName("distance-cell");
@@ -138,7 +153,15 @@ function sortDistances() {
 						distanceCells[z].parentNode,
 						distanceCells[z - 1].parentNode);
 			}
-	
+
 		}
 	}
+}
+
+// ////////////event listener and function to filter results by time///////////
+document.getElementById("timeButton").addEventListener("click", changeTime);
+function changeTime() {
+	console.log("clicked");
+	input = document.getElementById("timeInput");
+	console.log(input.value);
 }
