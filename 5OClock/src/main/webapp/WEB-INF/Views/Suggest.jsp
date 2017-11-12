@@ -59,15 +59,6 @@
 
 	</div>
 </body>
-<%-- <script src="<c:url value="/resources/Scripts/Suggest.js" />"></script> --%>
-<script>
-	document.getElementById("submit").addEventListener("click", submitFunc)
 
-	function submitFunc() {
-
-		document.getElementById("suggestForm").submit();
-
-	}
-</script>
 </html>
 

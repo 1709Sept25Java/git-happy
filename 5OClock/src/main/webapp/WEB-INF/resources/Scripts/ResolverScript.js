@@ -18,5 +18,5 @@ function sendAjax(url, func) {
 	xhr.send();
 };
 window.onload=function(){
-	sendAjax("http://localhost:8082/5OClock/resolvers", getResolved);
+	sendAjax("http://localhost:8082/FiveOClock/resolvers", getResolved);
 }

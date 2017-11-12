@@ -46,7 +46,7 @@ public class DealDaoImpl implements DealDao{
 				pendingListJSON=pendingListJSON+",";
 			}
 			count++;
-			pendingListJSON = pendingListJSON +"\""+d.getDealId() +"\" : { \"type\" : \"" + d.getType()+ "\" , \"description\" : \""+d.getDescription() + "\" ,\"price\" : \""+d.getPrice()+"\", \"startTime\" : \""+d.getStartTime()+"\", \"endTime\" : \""+d.getEndTime()+"\",\"status\":\""+d.getStatus()+ "\", \"venue\" : { \"venueId\" : \""+d.getVenue().getVenueId()+"\", \"venueName\" : \""+d.getVenue().getVenueName()+"\", \"address\" : \""+d.getVenue().getAddress()+"\" } }";
+			pendingListJSON = pendingListJSON +"\" { \"dealId\" : \"" +d.getDealId() +"\"  \"type\" : \"" + d.getType()+ "\" , \"description\" : \""+d.getDescription() + "\" ,\"price\" : \""+d.getPrice()+"\", \"startTime\" : \""+d.getStartTime()+"\", \"endTime\" : \""+d.getEndTime()+"\",\"status\":\""+d.getStatus()+ "\", \"venue\" : { \"venueId\" : \""+d.getVenue().getVenueId()+"\", \"venueName\" : \""+d.getVenue().getVenueName()+"\", \"address\" : \""+d.getVenue().getAddress()+"\" } }";
 		}
 		return pendingListJSON +"}";
 	}
@@ -68,10 +68,14 @@ public class DealDaoImpl implements DealDao{
 		Session s = HibernateUtil.getSession();
 		Transaction tx=s.beginTransaction();
 		int result =1;
-		String hql= "update Deal set status = Published where dealId =?";
+		String hql= "update Deal set status = 'published' where dealId =?";
 		Query query=s.createQuery(hql);
 		query.setParameter(0, id);
+		int res = query.executeUpdate();
+		System.out.println(res);
+		tx.commit();
 		result =2;
+		s.close();
 		return result;
 	}
 	@Override
@@ -79,10 +83,13 @@ public class DealDaoImpl implements DealDao{
 		Session s = HibernateUtil.getSession();
 		Transaction tx=s.beginTransaction();
 		int result =1;
-		String hql= "delete Deal dealId =?";
+		String hql= "delete Deal where dealId =?";
 		Query query=s.createQuery(hql);
 		query.setParameter(0, id);
+		int rest= query.executeUpdate();
+		tx.commit();
 		result =0;
+		s.close();
 		return result;
 	}
 

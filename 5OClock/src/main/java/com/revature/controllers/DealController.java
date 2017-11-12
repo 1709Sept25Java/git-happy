@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.Session;
 
 import org.springframework.stereotype.Controller;
@@ -32,23 +34,38 @@ public class DealController {
 		return dealsJSON;
 	}
 
-	@RequestMapping(value="/resolvers", method = RequestMethod.GET)
+	@RequestMapping(value = "/resolvers", method = RequestMethod.GET)
 	@ResponseBody
-	public String JSONPendings() throws JsonProcessingException{
+	public String JSONPendings() throws JsonProcessingException {
 		String pendingsJSON = DealService.viewPendingDeals();
 		return pendingsJSON;
 	}
-	@RequestMapping(value="/resolver", method = RequestMethod.GET)
-	public String Resolving(@RequestParam("action") String action, @RequestParam("dealId") int dealId,Model m) {
-		/*DealDaoImpl ddi = new DealDaoImpl();
-		int id = m.addAttribute("dealId",dealId);
-		if(action .equals("approve")) {
-		ddi.approveSuggestion(id);	
-		}else if(action.equals("denied")){
-			ddi.denySuggestion(id);
-		}*/
-		return"Resolver";
+
+	@RequestMapping(value = "/resolver", method = RequestMethod.GET)
+	public String Resolving() {
+		return "Resolver";
 	}
+
+	@RequestMapping(value = "/resolver", method = RequestMethod.POST, params = "approve")
+	public String ResolvingA(HttpServletRequest req,@RequestParam("dealId") int deal) {
+		DealDaoImpl ddi = new DealDaoImpl();
+		//int id = Integer.parseInt(req.getParameter("dealId"));
+		if(!req.getParameter("approve").toString().equals(null)) {
+			int approve = ddi.approveSuggestion(deal);
+		}
+		return "Resolver";
+	}
+	
+	@RequestMapping(value = "/resolver", method = RequestMethod.POST, params = "deny")
+	public String ResolvingD(HttpServletRequest req,@RequestParam("deal") int deal) {
+		DealDaoImpl ddi = new DealDaoImpl();
+		//int id = Integer.parseInt(req.getParameter("deal"));
+		if(!req.getParameter("deny").toString().equals(null)) {
+			int deny = ddi.denySuggestion(deal);
+		}
+		return "Resolver";
+	}
+
 	@RequestMapping(value = "/home")
 	public String home() {
 		return "Home";
@@ -83,7 +100,7 @@ public class DealController {
 			m.addAttribute("price", price);
 			m.addAttribute("startTime", start_time);
 			m.addAttribute("endTime", end_time);
-			m.addAttribute("venueName",name);
+			m.addAttribute("venueName", name);
 		}
 		return "ThankYou";
 	}
