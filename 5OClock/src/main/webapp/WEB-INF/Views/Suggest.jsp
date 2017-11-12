@@ -18,39 +18,56 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 </head>
-<body>
-<h4>Venue Suggestion</h4>
-<div>
-	<form>
-	
-		<input id="venueName" placeholder="Name"> <input
-			id="venueAddress" placeholder="Address"> <input
-			id="venuePhone" placeholder="Phone Number">
-			<input type="submit" value="Get Happy">
+<script>
+	var counter = 1;
+	var limit = 3;
+	function addInput(divName) {
 
-<h4>Deals Suggestion</h4>
-		<input id="dealType" placeholder="Deal's Type"> <input
-			id="description" placeholder="Description"> <input id="price"
-			placeholder="Price"> <input id="startTime"
-			placeholder="Start Time"> <input id="endTime"
-			placeholder="End Time"> <span id="submitGlyph"
-			class="glyphicon glyphicon-plus-sign"></span>
-			<div id= "nextDeal"></div>
-	</form>
-</div>
+		if (counter == limit) {
+			alert("you have reached the limit of adding deals")
+		} else {
+
+			var newdiv = document.createElement('div');
+			newdiv.innerHTML = '<input id="dealType" placeholder="Deal\'s Type"> <input id="description" placeholder="Description"> <input id="price" placeholder="Price"> <input id="startTime" placeholder="Start Time"> <input id="endTime" placeholder="End Time"> ';
+			document.getElementById(divName).appendChild(newdiv);
+			counter++;
+
+		}
+	}
+</script>
+<body>
+	<h4>Venue Suggestion</h4>
+	<div>
+		<form id="suggestForm" action="suggest" method="post">
+
+			<input id="venueName" placeholder="venueName"> <input
+				id="venueAddress" placeholder="venueAddress"> <input
+				id="venuePhone" placeholder="venuePhone">
+
+			<h4>Deals Suggestion</h4>
+
+			<input id="dealType" placeholder="Deal's Type"> <input
+				id="description" placeholder="Description"> <input
+				id="price" placeholder="Price"> <input id="startTime"
+				placeholder="Start Time"> <input id="endTime"
+				placeholder="End Time"> <span id="submitGlyph"
+				class="glyphicon glyphicon-plus-sign"
+				onClick="addInput('nextDeal');"></span>
+			<div id="nextDeal"></div>
+			<input id="submit" type="submit" value="Get Happy">
+		</form>
+
+	</div>
 </body>
 <%-- <script src="<c:url value="/resources/Scripts/Suggest.js" />"></script> --%>
 <script>
-document.getElementById("submitGlyph").addEventListener("click",function(){
-	
-	document.getElementById("nextDeal").innerHTML='<input id="dealType" placeholder="Deal\'s Type"> <input id="description" placeholder="Description"> <input id="price" placeholder="Price"> <input id="startTime"'+
-		'placeholder="Start Time"> <input id="endTime" placeholder="End Time">;
+	document.getElementById("submit").addEventListener("click", submitFunc)
 
-	alert("hello");
+	function submitFunc() {
 
-});
+		document.getElementById("suggestForm").submit();
 
-
+	}
 </script>
 </html>
 

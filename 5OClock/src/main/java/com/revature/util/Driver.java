@@ -33,6 +33,7 @@ public class Driver {
 
 		DealDaoImpl deals = new DealDaoImpl();
 		VenueDaoImpl vdi = new VenueDaoImpl();
+		System.out.println(deals.viewPendingDealsJSON());
 		//System.out.println(deals.getDealsJSON(s));
 		//System.out.println(deals.addDealSuggestion(new Deal("Beer","Draft beer",5,1700,2000,vdi.getVenueByName("Bonnie Vee"),"pending")));
 		//System.out.println(deals.addDealSuggestion(new Deal("Wine","Wine",8,1700,2000,vdi.getVenueByName("Bonnie Vee"),"pending")));

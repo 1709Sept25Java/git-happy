@@ -122,4 +122,10 @@ public class Deal implements Serializable{
 		return "Deal [dealId=" + dealId + ", type=" + type + ", description=" + description + ", price=" + price
 				+ ", startTime=" + startTime + ", endTime=" + endTime + ", status=" + status + "]";
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

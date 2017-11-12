@@ -21,20 +21,36 @@ import com.revature.dao.UserDaoImpl;
 @Controller
 public class LoginController {
 	@Autowired
-	@RequestMapping(value = "/login", method=RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
 		return "Login";
 	}
 
-	
-	@RequestMapping(value="/search", method=RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginAttempt(@RequestParam("username") String userInput,@RequestParam("password") String passwordInput) {
+		UserDaoImpl udi = new UserDaoImpl();
+		int isValid = udi.checkLogin(userInput, passwordInput);
+		switch (isValid) {
+		case 0:
+			System.out.println("loginAttempt method called, login unsuccessful");
+			return "Login";// Login/incorrectPass
+		case 1:
+			System.out.println("loginAttempt method called, login successful");
+			return "Home";// Home
+		default:
+			System.out.println("loginAttempt method called, login unsuccessful");
+			return "Login"; // Login/unsuccessful}
+		}
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchPage() {
 		return "Search";
 	}
 
-	@RequestMapping(value="/search", method=RequestMethod.POST)
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String searchForm(@RequestParam("input") String location, Model m) {
-		m.addAttribute("location",location);
+		m.addAttribute("location", location);
 		return "Home";
 	}
 }
