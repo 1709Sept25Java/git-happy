@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,11 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginAttempt(@RequestParam("username") String userInput,@RequestParam("password") String passwordInput) {
+	public String loginAttempt(@RequestParam("username") String userInput,@RequestParam("password") String passwordInput, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		/*userInput=req.getParameter("username");
+		session.setAttribute("username", userInput);*/
+	
 		UserDaoImpl udi = new UserDaoImpl();
 		int isValid = udi.checkLogin(userInput, passwordInput);
 		switch (isValid) {
@@ -36,6 +41,8 @@ public class LoginController {
 			return "Login";// Login/incorrectPass
 		case 1:
 			System.out.println("loginAttempt method called, login successful");
+			String username=req.getParameter("username");
+			session.setAttribute("username", username);
 			return "Home";// Home
 		default:
 			System.out.println("loginAttempt method called, login unsuccessful");
