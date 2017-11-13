@@ -13,7 +13,7 @@ timeNum = timeNum.trim();
 timeNum = 1700;
 
 window.onload = function() {
-	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals, timeNum);
+	sendAjaxGet('http://ec2-18-220-223-179.us-east-2.compute.amazonaws.com:8080/FiveOClock/deals', postDeals, timeNum);
 }
 
 function sendAjaxGet(url, func, arg) {
@@ -159,14 +159,6 @@ function sortDistances() {
 
 		}
 	}
-//	for(x = 0; x < distanceCells.length; x++){
-//		str = distanceCells[x].innerHTML;
-//		str = "x" +str;
-//		if(str.length<7){
-//			console.log(distanceCells[x].parentNode.parentNode.parentNode);
-//			//distanceCells[x].parentNode.parentNode.parentNode.deleteRow(x);
-//		}
-//	}
 }
 
 // ////////////event listener and function to filter results by time///////////
@@ -177,7 +169,7 @@ function changeTime() {
 	newTime = ""+timeInput.substring(0,2)+timeInput.substring(3,5);
 	console.log(newTime);
 	oldRows = document.getElementsByTagName("tr");
-	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals2, newTime);
+	sendAjaxGet('http://ec2-18-220-223-179.us-east-2.compute.amazonaws.com:8080/FiveOClock/deals', postDeals2, newTime);
 }
 
 
@@ -201,49 +193,6 @@ function postDeals2(xhr, time) {
 	for(m=1; m<tableRows.length-3; m++){
 		table.deleteRow(m);
 	}
-//	
-//	for (x in res) {
-//		if (res[x].startTime < time && time < res[x].endTime) {
-//			count = count+1;
-//			row = table.insertRow();
-//			row.setAttribute("class","table-rows");
-//			row.addEventListener("click", venuePage);
-//			typeCell = row.insertCell();
-//			typeCell.setAttribute("class", "type-cell");
-//			typeCell.innerHTML = res[x].type;
-//			priceCell = row.insertCell();
-//			priceCell.setAttribute("class", "price-cell");
-//			priceCell.innerHTML = "$" + res[x].price + "0";
-//			descriptionCell = row.insertCell();
-//			descriptionCell.setAttribute("class", "description-cell");
-//			descriptionCell.innerHTML = res[x].description;
-//			distanceCell = row.insertCell();
-//			distanceCell.setAttribute("class", "distance-cell");
-//			getDistance(res[x].venue.address);
-//			venueCell = row.insertCell();
-//			venueCell.setAttribute("class", "venue-cell");
-//			venueCell.setAttribute("value", res[x].venue.venueId);
-//		} else {
-//			continue;
-//		}
-//	}
-	
-	//retrutn here
-//	allRows = document.getElementsByTagName("tr");
-//	console.log(allRows[numberOfRows]);
-//	console.log(numberOfRows);
-//	for(n=numberOfRows-1; n<allRows.length;n++){
-//		//table.deleteRow(n);
-//		allRows[n].remove;
-//	}
-//	allRows = document.getElementsByTagName("tr");
-//	console.log(allRows[numberOfRows]);
-//	console.log(numberOfRows);
-//	for(n=numberOfRows-1; n<allRows.length;n++){
-//		//table.deleteRow(n);
-//		allRows[n].remove;
-//	}
-	//setTimeout(sortDistances, 1000);
 }
 
 
