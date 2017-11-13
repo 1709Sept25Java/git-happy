@@ -27,61 +27,87 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	
-}
-#box{
-top: 300px;
-	padding : 20px;
-	padding-bottom : 45px;
-	border-radius : 20px;
-	
-align:center;
 }
 
+#box {
+	top: 300px;
+	padding: 20px;
+	padding-bottom: 45px;
+	border-radius: 20px;
+	align: center;
+}
 </style>
-
 </head>
-<script>
-	var counter = 1;
-	var limit = 3;
-	function addInput(divName) {
 
-		if (counter == limit) {
-			alert("you have reached the limit of adding deals")
-		} else {
-
-			var newdiv = document.createElement('div');
-			newdiv.innerHTML = '<input id="dealType" placeholder="Deal\'s Type"> <input id="description" placeholder="Description"> <input id="price" placeholder="Price"> <input id="startTime" placeholder="Start Time"> <input id="endTime" placeholder="End Time"> ';
-			document.getElementById(divName).appendChild(newdiv);
-			counter++;
-		}
-	}
-</script>
 <body>
-<div id="box" style="width:1000px; margin:0 auto;">
-	<h3 style="color:#F1D744;">Venue Suggestion</h3>
-	
+	<div id="box" style="width: 1000px; margin: 0 auto;">
+		<h3 style="color: #F1D744;">Venue Suggestion</h3>
+
 		<form id="suggestForm" action="suggest" method="post">
 
-			<input id="venueName" placeholder="venueName"> <input
-				id="venueAddress" placeholder="venueAddress"> <input
-				id="venuePhone" placeholder="venuePhone">
+			<input name="venueName" placeholder="venueName"> <input
+				name="venueAddress" placeholder="venueAddress"> <input
+				name="venuePhone" placeholder="venuePhone">
 
-			<h3 style="color:#F1D744;">Deals Suggestion</h3>
+			<h3 style="color: #F1D744;">Deals Suggestion</h3>
+			<div id="div1">
+				<input name="dealType1" placeholder="Deal's Type"> <input
+					name="description1" placeholder="Description"> <input
+					name="price1" placeholder="Price"> <input name="startTime1"
+					placeholder="Start Time"> <input name="endTime1"
+					placeholder="End Time"> <span id="submitGlyph"
+					name="submitGlyph" class="glyphicon glyphicon-plus-sign"></span>
+				<div id="nextDeal"></div>
+			</div>
+			<div id="div2" style="display: none;">
+				<input name="dealType2" placeholder="Deal's Type"> <input
+					name="description2" placeholder="Description"> <input
+					name="price2" placeholder="Price"> <input name="startTime2"
+					placeholder="Start Time"> <input name="endTime2"
+					placeholder="End Time">
 
-			<input id="dealType" placeholder="Deal's Type"> <input
-				id="description" placeholder="Description"> <input
-				id="price" placeholder="Price"> <input id="startTime"
-				placeholder="Start Time"> <input id="endTime"
-				placeholder="End Time"> <span id="submitGlyph"
-				class="glyphicon glyphicon-plus-sign"
-				onClick="addInput('nextDeal');"></span>
-			<div id="nextDeal"></div>
-			<input id="submit" type="submit" value="Get Happy">
+			</div>
+			<div id="div3" style="display: none;">
+				<input name="dealType3" placeholder="Deal's Type"> <input
+					name="description3" placeholder="Description"> <input
+					name="price3" placeholder="Price"> <input name="startTime3"
+					placeholder="Start Time"> <input name="endTime3"
+					placeholder="End Time">
+			</div>
+			<input name="submit" type="submit" value="Get Happy">
 		</form>
 
 	</div>
 </body>
+<script>
+document.getElementById("submitGlyph").addEventListener("click", addInput);
+var counter = 1;
+var limit = 4;
+function addInput() {
+	console.log(document.getElementById("div1"));
+	console.log(document.getElementById("div2"));
+	console.log(document.getElementById("div3"));
 
+	if (counter == limit) {
+		alert("you have reached the limit of adding deals")
+		console.log("working");
+	} else {
+		if (counter == 2) {
+			document.getElementById("div2").removeAttribute("style");
+			console.log("ok");
+
+		} else if (counter == 3) {
+			document.getElementById("div3").removeAttribute("style");
+			console.log("ok2");
+		}
+		counter++;
+		// 			var newdiv = document.createElement('div');
+		// 			newdiv.innerHTML = '<input id="dealType" placeholder="Deal\'s Type"> <input id="description" placeholder="Description"> <input id="price" placeholder="Price"> <input id="startTime" placeholder="Start Time"> <input id="endTime" placeholder="End Time"> ';
+		// 			document.getElementById(divName).appendChild(newdiv);
+
+	}
+}
+
+</script>
 </html>
 

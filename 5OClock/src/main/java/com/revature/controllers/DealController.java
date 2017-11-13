@@ -47,20 +47,20 @@ public class DealController {
 	}
 
 	@RequestMapping(value = "/resolver", method = RequestMethod.POST, params = "approve")
-	public String ResolvingA(HttpServletRequest req,@RequestParam("dealId") int deal) {
+	public String ResolvingA(HttpServletRequest req, @RequestParam("dealId") int deal) {
 		DealDaoImpl ddi = new DealDaoImpl();
-		//int id = Integer.parseInt(req.getParameter("dealId"));
-		if(!req.getParameter("approve").toString().equals(null)) {
+		// int id = Integer.parseInt(req.getParameter("dealId"));
+		if (!req.getParameter("approve").toString().equals(null)) {
 			int approve = ddi.approveSuggestion(deal);
 		}
 		return "Resolver";
 	}
-	
+
 	@RequestMapping(value = "/resolver", method = RequestMethod.POST, params = "deny")
-	public String ResolvingD(HttpServletRequest req,@RequestParam("deal") int deal) {
+	public String ResolvingD(HttpServletRequest req, @RequestParam("deal") int deal) {
 		DealDaoImpl ddi = new DealDaoImpl();
-		//int id = Integer.parseInt(req.getParameter("deal"));
-		if(!req.getParameter("deny").toString().equals(null)) {
+		// int id = Integer.parseInt(req.getParameter("deal"));
+		if (!req.getParameter("deny").toString().equals(null)) {
 			int deny = ddi.denySuggestion(deal);
 		}
 		return "Resolver";
@@ -83,25 +83,37 @@ public class DealController {
 
 	@RequestMapping(value = "/suggest", method = RequestMethod.POST)
 	public String suggest(@RequestParam("venueName") String name, @RequestParam("venueAddress") String address,
-			@RequestParam("venuephone") String phone, @RequestParam("dealType") String type,
-			@RequestParam("description") String description, @RequestParam("price") double price,
-			@RequestParam("startTime") int start_time, @RequestParam("endTime") int end_time,
-			@RequestParam("venue") Venue venue, Model m) {
+			@RequestParam("venuephone") String phone, @RequestParam("dealType1") String type,
+			@RequestParam("description1") String description, @RequestParam("price1") double price,
+			@RequestParam("startTime1") int start_time, @RequestParam("endTime1") int end_time,
+			@RequestParam("venue") Venue venue, @RequestParam("dealType2") String type2,
+			@RequestParam("description2") String description2, @RequestParam("price2") double price2,
+			@RequestParam("startTime2") int start_time2, @RequestParam("endTime2") int end_time2,
+			@RequestParam("dealType3") String type3, @RequestParam("description3") String description3,
+			@RequestParam("price3") double price3, @RequestParam("startTime3") int start_time3,
+			@RequestParam("endTime3") int end_time3) {
+		Venue newVenue = new Venue(name, address, phone);
 		VenueDaoImpl vdi = new VenueDaoImpl();
 		int suggestion = vdi.addVenueSuggestions(new Venue(name, address, phone));
-		m.addAttribute("venueName", name);
-		m.addAttribute("venueAddress", address);
-		m.addAttribute("venuePhone", phone);
+		// m.addAttribute("venueName", name);
+		// m.addAttribute("venueAddress", address);
+		// m.addAttribute("venuePhone", phone);
 		DealDaoImpl ddi = new DealDaoImpl();
-		for (int i = 1; i <= 3; i++) {
-			int dealSuggestion = ddi.addDealSuggestion(new Deal(type, description, price, start_time, end_time, venue));
-			m.addAttribute("dealType", type);
-			m.addAttribute("description", description);
-			m.addAttribute("price", price);
-			m.addAttribute("startTime", start_time);
-			m.addAttribute("endTime", end_time);
-			m.addAttribute("venueName", name);
+		int dealSuggestion = ddi.addDealSuggestion(new Deal(type, description, price, start_time, end_time, newVenue));
+		if (description2.length() != 0) {
+			int dealSuggestion2 = ddi
+					.addDealSuggestion(new Deal(type2, description2, price2, start_time2, end_time2, newVenue));
 		}
+		if (description3.length() != 0) {
+			int dealSuggestion3 = ddi
+					.addDealSuggestion(new Deal(type3, description3, price3, start_time3, end_time3, newVenue));
+		}
+		/*
+		 * for (int i = 1; i <= 3; i++) { m.addAttribute("dealType", type);
+		 * m.addAttribute("description", description); m.addAttribute("price", price);
+		 * m.addAttribute("startTime", start_time); m.addAttribute("endTime", end_time);
+		 * m.addAttribute("venueName", name); }
+		 */
 		return "ThankYou";
 	}
 
