@@ -21,5 +21,5 @@ function sendAjax(url, func) {
 	xhr.send();
 };
 window.onload=function(){
-	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postPending);
+	sendAjaxGet('http://ec2-18-220-223-179.us-east-2.compute.amazonaws.com:8080/FiveOClock/deals', postPending);
 }
