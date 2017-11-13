@@ -22,15 +22,16 @@ public class Venue implements Serializable{
 	private String address;
 	
 	@Column(name = "PHONE")
-	private int phone;
+	private String phone;
 	
-	@OneToMany(mappedBy="venue",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="venue",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Deal> deals;
 
-	public Venue(String venueName, String address, int phone) {
+	public Venue(String venueName, String address, String phone) {
 		super();
 		this.venueName = venueName;
 		this.address = address;
+		this.phone = phone;
 	}
 	
 	public Venue() {
@@ -69,11 +70,28 @@ public class Venue implements Serializable{
 		this.deals = deals;
 	}
 
-	@Override
-	public String toString() {
+	
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String toStringWithDeal() {
 		return "Venue [venueId=" + venueId + ", venueName=" + venueName + ", address=" + address + ", deals=" + deals
 				+ "]";
 	}
+
+	@Override
+	public String toString() {
+		return "Venue [venueId=" + venueId + ", venueName=" + venueName + ", address=" + address + ", phone=" + phone
+				+ "]";
+	}
+	
+	
 	
 	
 }

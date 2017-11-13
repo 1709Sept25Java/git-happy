@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+input {
+	border-radius: 5px;
+}
+
+input, textarea {
+	background-color: #ffffe6;
+	opacity: 1;
+	color: black;
+}
+
+#contentDiv {
+	background-color: #ffffe6;/*  #2a0000; */
+	opacity: 0.5;
+	text-align: center;
+	margin: auto;
+    width: 70%;
+    position : relative;
+    top: 200px;
+	padding : 20px;
+	padding-bottom : 45px;
+	border-radius : 20px;
+	
+}
+
+h4{
+	padding : 10px;
+	color: #342017;/* #ffffe6; */
+	opacity:1;
+	font-size : 25px;
+}
+
+body{
+	background:  url(https://i.pinimg.com/originals/6d/88/ba/6d88ba056ad66378e8ec95c341004065.jpg) no-repeat center center fixed;;
+}

@@ -46,6 +46,18 @@ public class Deal implements Serializable{
 		this.status = status;
 		this.venue = venue;
 	}
+	
+	public Deal(String type, String description, double price, int startTime, int endTime, Venue venue) {
+		super();
+		this.type = type;
+		this.description = description;
+		this.price = price;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.venue = venue;
+		this.status = "pending";
+		
+	}
 
 	public Deal() {
 		super();
@@ -106,5 +118,26 @@ public class Deal implements Serializable{
 	public void setVenue(Venue venue) {
 		this.venue = venue;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String toStringWithVenue() {
+		return "Deal [dealId=" + dealId + ", type=" + type + ", description=" + description + ", price=" + price
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", status=" + status + ", venue=" + venue + "]";
+	}
+
+	@Override
+	public String toString() {
+		return "Deal [dealId=" + dealId + ", type=" + type + ", description=" + description + ", price=" + price
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", status=" + status + "]";
+	}
+	
+	
 	
 }

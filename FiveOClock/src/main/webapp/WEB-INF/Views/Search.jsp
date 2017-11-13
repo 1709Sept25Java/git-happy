@@ -4,8 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>5 O'Clock</title>
+<meta charset="ISO-8859-1">
+<title>Search</title>
+
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -21,26 +22,25 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 
-
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/Styles/LoginStyle.css" />">
+	href="<c:url value="/resources/Styles/Search.css" />">
+
 
 </head>
 <body>
-	<div id="contentDiv">
-		<h1 id="header">5 O'Clock</h1>
-		<div id="formDiv">
-			<form id="loginForm" action="login" method="post">
-				 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input name="username"
-					placeholder="Username"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				<input name="password" type="password" placeholder="Password">
-				&nbsp; &nbsp; &nbsp; <span id="submitGlyph"
-					class="glyphicon glyphicon-circle-arrow-right"></span>
-			</form>
-
-		</div>
-	</div>
-	<script src="<c:url value="/resources/Scripts/Login.js" />"></script>
+<div id=contentDiv>
+<h4>Where are you looking for happy hour deals?</h4>
+	<form action="search" method="POST">
+		<input id="input" name="input" class="controls" type="text"
+			placeholder="Enter location" style="width: 250px;"> <input
+			type="submit" value="Get Happy!" id="submit">
+	</form>
+	<div id="map"></div>
+</div>
 
 </body>
+<script src="<c:url value="/resources/Scripts/Search.js" />"></script>
+
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&libraries=places&callback=initMap"async defer></script>
 </html>
