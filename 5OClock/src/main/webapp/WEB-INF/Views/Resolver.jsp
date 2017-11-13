@@ -4,17 +4,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Approve Deals</title>
 
 
 </head>
 <style>
-#resolverdiv {
-	border: 5px, black;
+body{
+background:url("https://cdn-jpg1.thedailymeal.com/sites/default/files/styles/hero_image_breakpoints_theme_tdmr_lg_1x/public/2014/09/10/beerhealthmain.jpg?itok=R1XXdHBV&timestamp=1410398397") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+}
+#resolverTable {
+	font-size:25px;
 }
 </style>
 <body>
-	<form method="get" action="resolver">
+	<form method="post" action="resolver">
 		<div id="resolverdiv" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<table id="resolverTable" style="width: 100%">
 				<tr>

@@ -33,7 +33,7 @@ public class Driver {
 
 		DealDaoImpl deals = new DealDaoImpl();
 		VenueDaoImpl vdi = new VenueDaoImpl();
-		System.out.println(deals.viewPendingDealsJSON());
+	//	System.out.println(deals.viewPendingDealsJSON());
 		//System.out.println(deals.approveSuggestion(101));
 		//System.out.println(deals.denySuggestion(103));
 		//System.out.println(deals.getDealsJSON(s));
@@ -45,10 +45,12 @@ public class Driver {
 		//System.out.println(vdi.addVenueSuggestions(new Venue("Bonnie Vee","17 Stanton St  New York, NY 10002","9176393352")));
 		//System.out.println(vdi.getVenueById(41));
 		//System.out.println(vdi.getVenueByName("Bonnie Vee"));
-		//UserDaoImpl ud = new UserDaoImpl();
-		//System.out.println(ud.checkLogin("user@gmail.com", "passsqwfeeword"));
-		/*User u1 = new User("user@gmail.com","password");
-		s.save(u1);*/
+		UserDaoImpl ud = new UserDaoImpl();
+		System.out.println(ud.checkAdmin("admin@gmail.com","password"));
+		//System.out.println(ud.checkLogin("admin@gmail.com", "password"));
+		/*User u1 = new User("user@gmail.com","password");*/
+		//User u2 = new User("admin@gmail.com","password",true);
+		//s.save(u2);
 		tx.commit();
 		s.close();
 		//init2();

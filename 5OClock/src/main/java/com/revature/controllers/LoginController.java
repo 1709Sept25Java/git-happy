@@ -41,9 +41,20 @@ public class LoginController {
 			return "Login";// Login/incorrectPass
 		case 1:
 			System.out.println("loginAttempt method called, login successful");
-			String username=req.getParameter("username");
-			session.setAttribute("username", username);
-			return "Home";// Home
+			int admin = udi.checkAdmin(userInput, passwordInput);
+			userInput=req.getParameter("username");
+			passwordInput=req.getParameter("password");
+			//int isAdminie=req.setAttribute(arg0, admin);
+			session.setAttribute("username", userInput);
+			session.setAttribute("password", passwordInput);
+			session.setAttribute("admin", admin);
+			
+			if(admin == 1) {
+				return "Resolver";
+			}else {
+				return "Home";
+			}
+			//return "Home";// Home
 		default:
 			System.out.println("loginAttempt method called, login unsuccessful");
 			return "Login"; // Login/unsuccessful}
