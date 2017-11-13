@@ -44,8 +44,8 @@
 				<option value="Cocktails">Cocktails</option>
 			</select> <input name="description" placeholder="Description"> <input
 				name="price" type="number" placeholder="Price"> <input name="startTime" type="number"
-				placeholder="Start Time (e.g. 1700 for 5pm)"> <input name="endTime" type="number"
-				placeholder="End Time (e.g. 1900 for 7pm)"> <span id="submitGlyph"
+				placeholder="Start Time (e.g. 1700 for 5pm)" style="width:205px;"> <input name="endTime" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)" style="width:205px;"> <span id="submitGlyph"
 				class="glyphicon glyphicon-plus-sign"
 				onClick="addInput('nextDeal');"></span>
 				<div id="nextDeal"></div>
@@ -58,8 +58,8 @@
 				<option value="Cocktails">Cocktails</option>
 			</select> <input name="description2" placeholder="Description"> <input
 				name="price2" type="number" placeholder="Price"> <input name="startTime2" type="number"
-				placeholder="Start Time (e.g. 1700 for 5pm)"> <input name="endTime2" type="number"
-				placeholder="End Time (e.g. 1900 for 7pm)">
+				placeholder="Start Time (e.g. 1700 for 5pm)" style="width:205px;"> <input name="endTime2" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)" style="width:205px;">
 
 			</div>
 			<div id="div3" style="display: none;">
@@ -69,9 +69,10 @@
 				<option value="Cocktails">Cocktails</option>
 			</select> <input name="description3" placeholder="Description"> <input
 				name="price3" type="number" placeholder="Price"> <input name="startTime3" type="number"
-				placeholder="Start Time (e.g. 1700 for 5pm)"> <input name="endTime3" type="number"
-				placeholder="End Time (e.g. 1900 for 7pm)">
-			</div>			</form>
+				placeholder="Start Time (e.g. 1700 for 5pm)" style="width:205px;"> <input name="endTime3" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)" style="width:205px;">
+			</div>			
+			</form>
 			<br> <br>
 		</div>
 		<button id="backButton">Back</button>
