@@ -5,6 +5,7 @@ import org.hibernate.Transaction;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.revature.dao.DealDaoImpl;
+import com.revature.dao.VenueDaoImpl;
 import com.revature.domain.*;
 
 public class Driver {
@@ -22,7 +23,9 @@ public class Driver {
 //		s.save(u3);
 //		tx.commit();
 //		s.close();
-		
+		VenueDaoImpl vdi = new VenueDaoImpl();
+		Venue venue = vdi.getVenueById(8);
+		System.out.println(venue.toStringWithDeal());
 
 	}
 

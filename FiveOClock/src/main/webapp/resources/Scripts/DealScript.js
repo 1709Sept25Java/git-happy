@@ -1,49 +1,52 @@
 input = document.getElementById("timeInput");
 var d = new Date();
-currentTime = d.getHours() + ":" + d.getMinutes();
+minutes = d.getMinutes();
+minutes = minutes + " ";
+if(minutes.length-1 == 1){
+	minutes = " "+0+minutes;
+	minutes = minutes.trim();
+}
+currentTime = d.getHours() + ":" + minutes;
 input.setAttribute("value", currentTime);
-timeNum = " " + d.getHours() + d.getMinutes();
+timeNum = " " + d.getHours() + minutes;
 timeNum = timeNum.trim();
 
 window.onload = function() {
-	sendAjaxGet('http://localhost:8082/FiveOClock/deals', print2console);
-	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals);
+	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals, timeNum);
 }
 
-function sendAjaxGet(url, func) {
+function sendAjaxGet(url, func, arg) {
 	var xhr = new XMLHttpRequest()
 			|| new ActiveXObject("Microsoft.HTTPRequest");
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			func(this);
+			func(this, arg);
 		}
 	};
 	xhr.open("GET", url, true);
 	xhr.send();
 };
 
-function print2console(xhr) {
-	var res = xhr.responseText;
-	res = res.substring(1, res.length - 1);
-	res = "{" + res + "}";
-	res = JSON.parse(res);
-}
 
-function postDeals(xhr) {
+count = 0;
+var numberOfRows=0;
+function postDeals(xhr, time) {
 	// get response text, calculate the distance
 	var res = xhr.responseText;
 	res = res.substring(1, res.length - 1);
 	res = "{" + res + "}";
 	res = JSON.parse(res);
 	table = document.getElementById("dealTable");
+	oldRows = document.getElementsByClassName("table-rows");
+//	for(r=0;r<oldRows.length;r++){
+//		oldRows[r].remove();
+//	}	
 	for (x in res) {
-		console.log(res[x].startTime);
-		console.log(res[x].startTime);
-		if (res[x].startTime < timeNum < res[x].startTime) {
+		if (res[x].startTime < time && time < res[x].endTime) {
+			count = count+1;
 			row = table.insertRow();
-			row.addEventListener("click", function link() {
-				window.location.href = "venue/" + x
-			});
+			row.setAttribute("class","table-rows");
+			row.addEventListener("click", venuePage);
 			typeCell = row.insertCell();
 			typeCell.setAttribute("class", "type-cell");
 			typeCell.innerHTML = res[x].type;
@@ -56,6 +59,10 @@ function postDeals(xhr) {
 			distanceCell = row.insertCell();
 			distanceCell.setAttribute("class", "distance-cell");
 			getDistance(res[x].venue.address);
+			venueCell = row.insertCell();
+			venueCell.setAttribute("class", "venue-cell");
+			venueCell.setAttribute("value", res[x].venue.venueId);
+			numberOfRows++;
 		} else {
 			continue;
 		}
@@ -81,7 +88,7 @@ function callback(response, status) {
 	if (status == "OK") {
 		distanceCells = document.getElementsByClassName("distance-cell");
 		distanceCells[count].innerHTML = response.rows[0].elements[0].distance.text
-		if (count == distanceCells.length - 1) {
+		if (count == distanceCells.length) {
 			return;
 		}
 		if (count > 1) {
@@ -106,15 +113,12 @@ function callback(response, status) {
 // ////////////event listener and function to filter results by type///////////
 document.getElementById("filterForm").addEventListener("change", filter);
 function filter() {
-	console.log("weee check box changed!");
 	checkBoxes = document.getElementsByClassName("checkBox");
 	for (i = 0; i < checkBoxes.length; i++) {
 		if (!checkBoxes[i].checked) {
 			type = checkBoxes[i].id;
-			console.log(type);
 			typeCells = document.getElementsByClassName("type-cell");
 			for (j = 0; j < typeCells.length; j++) {
-				console.log(typeCells[j].innerHTML);
 				if (typeCells[j].innerHTML == type) {
 					typeCells[j].parentNode.setAttribute("style",
 							"display: none;");
@@ -123,10 +127,8 @@ function filter() {
 		}
 		if (checkBoxes[i].checked) {
 			type = checkBoxes[i].id;
-			console.log(type);
 			typeCells = document.getElementsByClassName("type-cell");
 			for (j = 0; j < typeCells.length; j++) {
-				console.log(typeCells[j].innerHTML);
 				if (typeCells[j].innerHTML == type) {
 					typeCells[j].parentNode.removeAttribute("style");
 				}
@@ -156,12 +158,89 @@ function sortDistances() {
 
 		}
 	}
+//	for(x = 0; x < distanceCells.length; x++){
+//		str = distanceCells[x].innerHTML;
+//		str = "x" +str;
+//		if(str.length<7){
+//			console.log(distanceCells[x].parentNode.parentNode.parentNode);
+//			//distanceCells[x].parentNode.parentNode.parentNode.deleteRow(x);
+//		}
+//	}
 }
 
 // ////////////event listener and function to filter results by time///////////
 document.getElementById("timeButton").addEventListener("click", changeTime);
 function changeTime() {
-	console.log("clicked");
 	input = document.getElementById("timeInput");
-	console.log(input.value);
+	timeInput =input.value
+	newTime = ""+timeInput.substring(0,2)+timeInput.substring(3,5);
+	console.log(newTime);
+	oldRows = document.getElementsByTagName("tr");
+	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals2, newTime);
+}
+
+
+/////////// redirects page based on venue Id saved in a hidden table row/////
+function venuePage(){
+	console.log(event.target);
+	venueIdCell = event.target.parentNode.lastChild;
+	window.location.href = "venue/" + venueIdCell.getAttribute("value");
+}
+
+
+function postDeals2(xhr, time) {
+	// get response text, calculate the distance
+	console.log(time);
+	var res = xhr.responseText;
+	res = res.substring(1, res.length - 1);
+	res = "{" + res + "}";
+	res = JSON.parse(res);
+	table = document.getElementById("dealTable");
+	tableRows = table.getElementsByTagName("tr");
+	for(m=1; m<tableRows.length-3; m++){
+		table.deleteRow(m);
+	}
+//	
+//	for (x in res) {
+//		if (res[x].startTime < time && time < res[x].endTime) {
+//			count = count+1;
+//			row = table.insertRow();
+//			row.setAttribute("class","table-rows");
+//			row.addEventListener("click", venuePage);
+//			typeCell = row.insertCell();
+//			typeCell.setAttribute("class", "type-cell");
+//			typeCell.innerHTML = res[x].type;
+//			priceCell = row.insertCell();
+//			priceCell.setAttribute("class", "price-cell");
+//			priceCell.innerHTML = "$" + res[x].price + "0";
+//			descriptionCell = row.insertCell();
+//			descriptionCell.setAttribute("class", "description-cell");
+//			descriptionCell.innerHTML = res[x].description;
+//			distanceCell = row.insertCell();
+//			distanceCell.setAttribute("class", "distance-cell");
+//			getDistance(res[x].venue.address);
+//			venueCell = row.insertCell();
+//			venueCell.setAttribute("class", "venue-cell");
+//			venueCell.setAttribute("value", res[x].venue.venueId);
+//		} else {
+//			continue;
+//		}
+//	}
+	
+	//retrutn here
+//	allRows = document.getElementsByTagName("tr");
+//	console.log(allRows[numberOfRows]);
+//	console.log(numberOfRows);
+//	for(n=numberOfRows-1; n<allRows.length;n++){
+//		//table.deleteRow(n);
+//		allRows[n].remove;
+//	}
+//	allRows = document.getElementsByTagName("tr");
+//	console.log(allRows[numberOfRows]);
+//	console.log(numberOfRows);
+//	for(n=numberOfRows-1; n<allRows.length;n++){
+//		//table.deleteRow(n);
+//		allRows[n].remove;
+//	}
+	//setTimeout(sortDistances, 1000);
 }

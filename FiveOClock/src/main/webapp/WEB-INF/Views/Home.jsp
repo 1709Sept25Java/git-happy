@@ -36,16 +36,17 @@
 				id="Cocktails" type="checkbox" name="type" value="cocktails"
 				class="checkBox" checked /> Cocktails
 		</form>
+		<br>
 			<div class="col-xs-2">
 				<input id="timeInput" type="text" class="form-control input-sm" />
 			</div>
 			<button id="timeButton">
-				<span class="glyphicon glyphicon-time"></span>
+				Change Time <span class="glyphicon glyphicon-time"></span>
 			</button>
 
 	</div>
 <br>
-
+<div id=tableDiv>
 	<table id="dealTable">
 		<tr>
 			<th class="typeRow">Type</th>
@@ -54,7 +55,7 @@
 			<th class="distanceRow">Distance</th>
 		<tr>
 	</table>
-
+</div>
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&sensor=false"></script>
 	<script src="<c:url value="/resources/Scripts/DealScript.js" />"></script>

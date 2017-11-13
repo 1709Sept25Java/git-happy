@@ -24,7 +24,7 @@ public class Venue implements Serializable{
 	@Column(name = "PHONE")
 	private String phone;
 	
-	@OneToMany(mappedBy="venue",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="venue",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Deal> deals;
 
 	public Venue(String venueName, String address, String phone) {
@@ -68,6 +68,16 @@ public class Venue implements Serializable{
 
 	public void setDeals(List<Deal> deals) {
 		this.deals = deals;
+	}
+
+	
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String toStringWithDeal() {
