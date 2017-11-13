@@ -8,5 +8,8 @@
 </head>
 <body>
 Thanks for your suggestion!
+
+<br>
+<a href="search"><button>Back to search</button></a>
 </body>
 </html>

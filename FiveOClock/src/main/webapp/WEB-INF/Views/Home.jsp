@@ -26,36 +26,50 @@
 <title>Happy Hour Deals Near ${location}</title>
 </head>
 <body>
-	<h2 id="heading">Happy Hour Deals Near ${location}</h2>
-	<div>
-		Refine Search:
-		<form id="filterForm" style="display: inline;">
-			<input id="Beer" type="checkbox" name="type" value="beer"
-				class="checkBox" checked /> Beer <input id="Wine" type="checkbox"
-				name="type" value="wine" class="checkBox" checked /> Wine <input
-				id="Cocktails" type="checkbox" name="type" value="cocktails"
-				class="checkBox" checked /> Cocktails
-		</form>
-		<br>
-			<div class="col-xs-2">
-				<input id="timeInput" type="text" class="form-control input-sm" />
-			</div>
-			<button id="timeButton">
-				Change Time <span class="glyphicon glyphicon-time"></span>
-			</button>
 
+	<div id="headingDiv">
+		<div id="suggestLink">
+			Suggest a new deal <span id="submitGlyph"
+				class="glyphicon glyphicon-plus-sign"></span>
+		</div>
+		</form>
+		<h2 id="heading">Happy Hour Deals Near ${location}</h2>
+		<a href="search"><button id="backButton">Search Somewhere
+				Else</button></a>
+
+		<div>
+			Refine Search:
+			<form id="filterForm" style="display: inline;">
+				<input id="Beer" type="checkbox" name="type" value="beer"
+					class="checkBox" checked /> Beer <input id="Wine" type="checkbox"
+					name="type" value="wine" class="checkBox" checked /> Wine <input
+					id="Cocktails" type="checkbox" name="type" value="cocktails"
+					class="checkBox" checked /> Cocktails
+			</form>
+			<br>
+			<div>
+				<input id="timeInput" type="text" class="form-control input-sm"
+					style="display: inline;" />
+				<button id="timeButton" style="display: inline;">
+					Change Time <span class="glyphicon glyphicon-time"></span>
+				</button>
+			</div>
+
+		</div>
 	</div>
-<br>
-<div id=tableDiv>
-	<table id="dealTable">
-		<tr>
-			<th class="typeRow">Type</th>
-			<th class="priceRow">Price</th>
-			<th class="descriptionRow">Description</th>
-			<th class="distanceRow">Distance</th>
-		<tr>
-	</table>
-</div>
+	<br>
+	<div class="contentDiv">
+		<div id=tableDiv>
+			<table id="dealTable" class="table table-hover">
+				<tr>
+					<th class="typeRow">Type</th>
+					<th class="priceRow">Price</th>
+					<th class="descriptionRow">Description</th>
+					<th class="distanceRow">Distance</th>
+				<tr>
+			</table>
+		</div>
+	</div>
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyCVYfU6ANVwwcUSLUM0DzeMgC9WanFMJ2Y&sensor=false"></script>
 	<script src="<c:url value="/resources/Scripts/DealScript.js" />"></script>

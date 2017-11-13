@@ -10,6 +10,7 @@ currentTime = d.getHours() + ":" + minutes;
 input.setAttribute("value", currentTime);
 timeNum = " " + d.getHours() + minutes;
 timeNum = timeNum.trim();
+timeNum = 1700;
 
 window.onload = function() {
 	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals, timeNum);
@@ -42,7 +43,7 @@ function postDeals(xhr, time) {
 //		oldRows[r].remove();
 //	}	
 	for (x in res) {
-		if (res[x].startTime < time && time < res[x].endTime) {
+		if (res[x].startTime < 1600 && 1600 < res[x].endTime) {
 			count = count+1;
 			row = table.insertRow();
 			row.setAttribute("class","table-rows");
@@ -243,4 +244,11 @@ function postDeals2(xhr, time) {
 //		allRows[n].remove;
 //	}
 	//setTimeout(sortDistances, 1000);
+}
+
+
+document.getElementById("suggestLink").addEventListener("click",goToSuggest);
+
+function goToSuggest(){
+	window.location.href = "suggest";
 }

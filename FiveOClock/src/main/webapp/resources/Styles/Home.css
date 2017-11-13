@@ -4,3 +4,54 @@
 	width : 60px;
 	height : 25px;
 }
+
+#heading{
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+
+#suggestLink{
+	text-align : right;
+}
+
+body{
+	background:  url(https://i.pinimg.com/originals/6d/88/ba/6d88ba056ad66378e8ec95c341004065.jpg) no-repeat center center fixed;;
+}
+
+.table {
+   margin: auto;
+   width: 70% !important; 
+
+}
+
+#headingDiv{
+	background-color: #ffffe6;/*  #2a0000; */
+	opacity: 0.5;
+	text-align: center;
+	margin: auto;
+    width: 70%;
+    position : relative;
+	padding : 20px;
+	padding-bottom : 15px;
+	border-radius : 20px;
+}
+.table{
+	background-color: #ffffe6;/*  #2a0000; */
+	opacity: 0.5;
+	text-align: center;
+	margin: auto;
+    width: 50%;
+    position : relative;
+	padding : 20px;
+	padding-bottom : 45px;
+	border-radius : 20px;
+	font-size: 20px;
+}
+
+#filterForm{
+	margin: 15px;
+}
+
+th{
+	text-align : center;
+}

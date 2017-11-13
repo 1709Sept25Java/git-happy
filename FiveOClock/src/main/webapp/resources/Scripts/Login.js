@@ -1,5 +1,5 @@
 
-document.getElementById("submitGlyph").addEventListener("click", submitFunc)
+document.getElementById("submitGlyph").addEventListener("click", submitFunc);
 
 
 function submitFunc(){

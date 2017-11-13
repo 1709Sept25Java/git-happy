@@ -21,4 +21,12 @@ public class DealService {
 		return dealsJSON;
 	}
 
+	@Transactional
+	public static String viewPendingDeals() {
+		Session s = HibernateUtil.getSession();
+		DealDaoImpl pendings = new DealDaoImpl();
+		String pendingsJSON = pendings.viewPendingDealsJSON();
+		s.close();
+		return pendingsJSON;
+	}
 }
