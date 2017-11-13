@@ -24,20 +24,7 @@
 	href="<c:url value="/resources/Styles/Resolver.css" />">
 
 </head>
-<script>
-	var counter = 1;
-	var limit = 3;
-	function addInput(divName) {
-		if (counter == limit) {
-			alert("you have reached the limit of adding deals")
-		} else {
-			var newdiv = document.createElement('div');
-			newdiv.innerHTML = '<input id="dealType" placeholder="Deal\'s Type"> <input id="description" placeholder="Description"> <input id="price" placeholder="Price"> <input id="startTime" placeholder="Start Time"> <input id="endTime" placeholder="End Time"> ';
-			document.getElementById(divName).appendChild(newdiv);
-			counter++;
-		}
-	}
-</script>
+
 <body>
 	<div class="contentDiv">
 		<h4>Venue Suggestion</h4>
@@ -50,33 +37,41 @@
 					name="venuePhone" placeholder="venuePhone">
 
 				<h4>Deals Suggestion</h4>
-				<div id="div1">
-					<input name="dealType1" placeholder="Deal's Type"> <input
-						name="description1" placeholder="Description"> <input
-						name="price1" placeholder="Price"> <input
-						name="startTime1" placeholder="Start Time"> <input
-						name="endTime1" placeholder="End Time"> <span
-						id="submitGlyph" name="submitGlyph"
-						class="glyphicon glyphicon-plus-sign"></span>
-					<div id="nextDeal"></div>
-				</div>
-				<div id="div2" style="display: none;">
-					<input name="dealType2" placeholder="Deal's Type"> <input
-						name="description2" placeholder="Description"> <input
-						name="price2" placeholder="Price"> <input
-						name="startTime2" placeholder="Start Time"> <input
-						name="endTime2" placeholder="End Time">
+							<div id="div1">
+				<select name="dealType">
+				<option value="Beer">Beer</option>
+				<option value="Wine">Wine</option>
+				<option value="Cocktails">Cocktails</option>
+			</select> <input name="description" placeholder="Description"> <input
+				name="price" type="number" placeholder="Price"> <input name="startTime" type="number"
+				placeholder="Start Time (e.g. 1700 for 5pm)"> <input name="endTime" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)"> <span id="submitGlyph"
+				class="glyphicon glyphicon-plus-sign"
+				onClick="addInput('nextDeal');"></span>
+				<div id="nextDeal"></div>
+			</div>
+			
+			<div id="div2" style="display: none;">
+				<select name="dealType2">
+				<option value="Beer">Beer</option>
+				<option value="Wine">Wine</option>
+				<option value="Cocktails">Cocktails</option>
+			</select> <input name="description2" placeholder="Description"> <input
+				name="price2" type="number" placeholder="Price"> <input name="startTime2" type="number"
+				placeholder="Start Time (e.g. 1700 for 5pm)"> <input name="endTime2" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)">
 
-				</div>
-				<div id="div3" style="display: none;">
-					<input name="dealType3" placeholder="Deal's Type"> <input
-						name="description3" placeholder="Description"> <input
-						name="price3" placeholder="Price"> <input
-						name="startTime3" placeholder="Start Time"> <input
-						name="endTime3" placeholder="End Time">
-				</div>
-				<input name="submit" type="submit" value="Get Happy">
-			</form>
+			</div>
+			<div id="div3" style="display: none;">
+				<select name="dealType3">
+				<option value="Beer">Beer</option>
+				<option value="Wine">Wine</option>
+				<option value="Cocktails">Cocktails</option>
+			</select> <input name="description3" placeholder="Description"> <input
+				name="price3" type="number" placeholder="Price"> <input name="startTime3" type="number"
+				placeholder="Start Time (e.g. 1700 for 5pm)"> <input name="endTime3" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)">
+			</div>			</form>
 			<br> <br>
 		</div>
 		<button id="backButton">Back</button>
