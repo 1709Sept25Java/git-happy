@@ -31,7 +31,9 @@
 		<div id="suggestLink">
 			Suggest a new deal <span id="submitGlyph"
 				class="glyphicon glyphicon-plus-sign"></span>
+				${resolverLink}
 		</div>
+
 		</form>
 		<h2 id="heading">Happy Hour Deals Near ${location}</h2>
 		<a href="search"><button id="backButton">Search Somewhere

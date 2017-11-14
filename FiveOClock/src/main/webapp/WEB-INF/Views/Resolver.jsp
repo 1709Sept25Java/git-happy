@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/Styles/Resolver.css" />">
@@ -33,13 +47,21 @@
 						<th class="venueAddressRow">Address</th>
 					<tr>
 				</table>
+				<br>
 			</div>
-
 			<input name="dealId" placeholder="dealID"> <input
-				type="submit" name=approve value="approve"> <input
+				type="submit" name=approve value="approve"
+				class="btn btn-primary btn-sm active"
+				style="background-color: #342017; display: inline;"> <input
 				name="deal" placeholder="dealID"> <input type="submit"
-				name="action" value="deny">
+				name="action" value="deny" class="btn btn-primary btn-sm active"
+				style="background-color: #342017; display: inline;">
 		</form>
+		<br>
+		<div style="text-align: center;">
+			<a href="search"><button class="btn btn-primary btn-sm active"
+					style="background-color: #342017;">Return to Search</button></a>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">

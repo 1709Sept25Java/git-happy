@@ -40,7 +40,7 @@ public class VenueController {
 		endTime = endTime.substring(0, 2)+":"+endTime.substring(3)+"0";
 		String timeString = "Deals begin at "+startTime+" and end at "+endTime;
 		
-		String dealHTML= "<table>";
+		String dealHTML= "<table id=\"dealsTable\" class=\"table table-hover\"  style = \"text-align: center;\" >";
 		for(int i = 0; i<deals.size(); i++) {
 			Deal d = (Deal) deals.get(i);
 			dealHTML = dealHTML + "<tr><td class=\"type-cell\">"+d.getType()+"<td><td class=\"price-cell\"> $"+d.getPrice()+"0 </td><td class=\"description-cell\">"+d.getDescription()+"</td></tr>";

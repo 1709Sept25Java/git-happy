@@ -34,3 +34,13 @@ h4{
 body{
 	background:  url(https://i.pinimg.com/originals/6d/88/ba/6d88ba056ad66378e8ec95c341004065.jpg) no-repeat center center fixed;;
 }
+
+#logoutButton{
+	text-align: right;
+	margin:20px;
+}
+
+button{
+	background-color:#342017;
+	color:#ffffe6;;
+}

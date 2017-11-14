@@ -28,6 +28,7 @@
 
 </head>
 <body>
+<div id="logoutButton"><a href="logout"><button class="btn">Log Out</button></a></div>
 <div id=contentDiv>
 <h4>Where are you looking for happy hour deals?</h4>
 	<form action="search" method="POST">

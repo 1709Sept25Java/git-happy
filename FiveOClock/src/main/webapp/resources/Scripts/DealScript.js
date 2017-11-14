@@ -2,8 +2,8 @@ input = document.getElementById("timeInput");
 var d = new Date();
 minutes = d.getMinutes();
 minutes = minutes + " ";
-if(minutes.length-1 == 1){
-	minutes = " "+0+minutes;
+if (minutes.length - 1 == 1) {
+	minutes = " " + 0 + minutes;
 	minutes = minutes.trim();
 }
 currentTime = d.getHours() + ":" + minutes;
@@ -28,9 +28,8 @@ function sendAjaxGet(url, func, arg) {
 	xhr.send();
 };
 
-
 count = 0;
-var numberOfRows=0;
+var numberOfRows = 0;
 function postDeals(xhr, time) {
 	// get response text, calculate the distance
 	var res = xhr.responseText;
@@ -39,31 +38,33 @@ function postDeals(xhr, time) {
 	res = JSON.parse(res);
 	table = document.getElementById("dealTable");
 	oldRows = document.getElementsByClassName("table-rows");
-//	for(r=0;r<oldRows.length;r++){
-//		oldRows[r].remove();
-//	}	
+	// for(r=0;r<oldRows.length;r++){
+	// oldRows[r].remove();
+	// }
 	for (x in res) {
-		if (res[x].startTime < 1600 && 1600 < res[x].endTime) {
-			count = count+1;
-			row = table.insertRow();
-			row.setAttribute("class","table-rows");
-			row.addEventListener("click", venuePage);
-			typeCell = row.insertCell();
-			typeCell.setAttribute("class", "type-cell");
-			typeCell.innerHTML = res[x].type;
-			priceCell = row.insertCell();
-			priceCell.setAttribute("class", "price-cell");
-			priceCell.innerHTML = "$" + res[x].price + "0";
-			descriptionCell = row.insertCell();
-			descriptionCell.setAttribute("class", "description-cell");
-			descriptionCell.innerHTML = res[x].description;
-			distanceCell = row.insertCell();
-			distanceCell.setAttribute("class", "distance-cell");
-			getDistance(res[x].venue.address);
-			venueCell = row.insertCell();
-			venueCell.setAttribute("class", "venue-cell");
-			venueCell.setAttribute("value", res[x].venue.venueId);
-			numberOfRows++;
+		if (res[x].status == "published") {
+			if (res[x].startTime < 1600 && 1600 < res[x].endTime) {
+				count = count + 1;
+				row = table.insertRow();
+				row.setAttribute("class", "table-rows");
+				row.addEventListener("click", venuePage);
+				typeCell = row.insertCell();
+				typeCell.setAttribute("class", "type-cell");
+				typeCell.innerHTML = res[x].type;
+				priceCell = row.insertCell();
+				priceCell.setAttribute("class", "price-cell");
+				priceCell.innerHTML = "$" + res[x].price + "0";
+				descriptionCell = row.insertCell();
+				descriptionCell.setAttribute("class", "description-cell");
+				descriptionCell.innerHTML = res[x].description;
+				distanceCell = row.insertCell();
+				distanceCell.setAttribute("class", "distance-cell");
+				getDistance(res[x].venue.address);
+				venueCell = row.insertCell();
+				venueCell.setAttribute("class", "venue-cell");
+				venueCell.setAttribute("value", res[x].venue.venueId);
+				numberOfRows++;
+			}
 		} else {
 			continue;
 		}
@@ -159,35 +160,33 @@ function sortDistances() {
 
 		}
 	}
-//	for(x = 0; x < distanceCells.length; x++){
-//		str = distanceCells[x].innerHTML;
-//		str = "x" +str;
-//		if(str.length<7){
-//			console.log(distanceCells[x].parentNode.parentNode.parentNode);
-//			//distanceCells[x].parentNode.parentNode.parentNode.deleteRow(x);
-//		}
-//	}
+	// for(x = 0; x < distanceCells.length; x++){
+	// str = distanceCells[x].innerHTML;
+	// str = "x" +str;
+	// if(str.length<7){
+	// console.log(distanceCells[x].parentNode.parentNode.parentNode);
+	// //distanceCells[x].parentNode.parentNode.parentNode.deleteRow(x);
+	// }
+	// }
 }
 
 // ////////////event listener and function to filter results by time///////////
 document.getElementById("timeButton").addEventListener("click", changeTime);
 function changeTime() {
 	input = document.getElementById("timeInput");
-	timeInput =input.value
-	newTime = ""+timeInput.substring(0,2)+timeInput.substring(3,5);
+	timeInput = input.value
+	newTime = "" + timeInput.substring(0, 2) + timeInput.substring(3, 5);
 	console.log(newTime);
 	oldRows = document.getElementsByTagName("tr");
 	sendAjaxGet('http://localhost:8082/FiveOClock/deals', postDeals2, newTime);
 }
 
-
-/////////// redirects page based on venue Id saved in a hidden table row/////
-function venuePage(){
+// ///////// redirects page based on venue Id saved in a hidden table row/////
+function venuePage() {
 	console.log(event.target);
 	venueIdCell = event.target.parentNode.lastChild;
 	window.location.href = "venue/" + venueIdCell.getAttribute("value");
 }
-
 
 function postDeals2(xhr, time) {
 	// get response text, calculate the distance
@@ -198,57 +197,56 @@ function postDeals2(xhr, time) {
 	res = JSON.parse(res);
 	table = document.getElementById("dealTable");
 	tableRows = table.getElementsByTagName("tr");
-	for(m=1; m<tableRows.length-3; m++){
+	for (m = 1; m < tableRows.length - 3; m++) {
 		table.deleteRow(m);
 	}
-//	
-//	for (x in res) {
-//		if (res[x].startTime < time && time < res[x].endTime) {
-//			count = count+1;
-//			row = table.insertRow();
-//			row.setAttribute("class","table-rows");
-//			row.addEventListener("click", venuePage);
-//			typeCell = row.insertCell();
-//			typeCell.setAttribute("class", "type-cell");
-//			typeCell.innerHTML = res[x].type;
-//			priceCell = row.insertCell();
-//			priceCell.setAttribute("class", "price-cell");
-//			priceCell.innerHTML = "$" + res[x].price + "0";
-//			descriptionCell = row.insertCell();
-//			descriptionCell.setAttribute("class", "description-cell");
-//			descriptionCell.innerHTML = res[x].description;
-//			distanceCell = row.insertCell();
-//			distanceCell.setAttribute("class", "distance-cell");
-//			getDistance(res[x].venue.address);
-//			venueCell = row.insertCell();
-//			venueCell.setAttribute("class", "venue-cell");
-//			venueCell.setAttribute("value", res[x].venue.venueId);
-//		} else {
-//			continue;
-//		}
-//	}
-	
-	//retrutn here
-//	allRows = document.getElementsByTagName("tr");
-//	console.log(allRows[numberOfRows]);
-//	console.log(numberOfRows);
-//	for(n=numberOfRows-1; n<allRows.length;n++){
-//		//table.deleteRow(n);
-//		allRows[n].remove;
-//	}
-//	allRows = document.getElementsByTagName("tr");
-//	console.log(allRows[numberOfRows]);
-//	console.log(numberOfRows);
-//	for(n=numberOfRows-1; n<allRows.length;n++){
-//		//table.deleteRow(n);
-//		allRows[n].remove;
-//	}
-	//setTimeout(sortDistances, 1000);
+	//	
+	// for (x in res) {
+	// if (res[x].startTime < time && time < res[x].endTime) {
+	// count = count+1;
+	// row = table.insertRow();
+	// row.setAttribute("class","table-rows");
+	// row.addEventListener("click", venuePage);
+	// typeCell = row.insertCell();
+	// typeCell.setAttribute("class", "type-cell");
+	// typeCell.innerHTML = res[x].type;
+	// priceCell = row.insertCell();
+	// priceCell.setAttribute("class", "price-cell");
+	// priceCell.innerHTML = "$" + res[x].price + "0";
+	// descriptionCell = row.insertCell();
+	// descriptionCell.setAttribute("class", "description-cell");
+	// descriptionCell.innerHTML = res[x].description;
+	// distanceCell = row.insertCell();
+	// distanceCell.setAttribute("class", "distance-cell");
+	// getDistance(res[x].venue.address);
+	// venueCell = row.insertCell();
+	// venueCell.setAttribute("class", "venue-cell");
+	// venueCell.setAttribute("value", res[x].venue.venueId);
+	// } else {
+	// continue;
+	// }
+	// }
+
+	// retrutn here
+	// allRows = document.getElementsByTagName("tr");
+	// console.log(allRows[numberOfRows]);
+	// console.log(numberOfRows);
+	// for(n=numberOfRows-1; n<allRows.length;n++){
+	// //table.deleteRow(n);
+	// allRows[n].remove;
+	// }
+	// allRows = document.getElementsByTagName("tr");
+	// console.log(allRows[numberOfRows]);
+	// console.log(numberOfRows);
+	// for(n=numberOfRows-1; n<allRows.length;n++){
+	// //table.deleteRow(n);
+	// allRows[n].remove;
+	// }
+	// setTimeout(sortDistances, 1000);
 }
 
+document.getElementById("suggestLink").addEventListener("click", goToSuggest);
 
-document.getElementById("suggestLink").addEventListener("click",goToSuggest);
-
-function goToSuggest(){
+function goToSuggest() {
 	window.location.href = "suggest";
 }

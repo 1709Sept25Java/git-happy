@@ -44,8 +44,8 @@
 				<option value="Cocktails">Cocktails</option>
 			</select> <input name="description" placeholder="Description"> <input
 				name="price" type="number" placeholder="Price"> <input name="startTime" type="number"
-				placeholder="Start Time (e.g. 1700 for 5pm)" class="timeInput"> <input name="endTime" type="number"
-				placeholder="End Time (e.g. 1900 for 7pm)" class="timeInput"> <span id="submitGlyph"
+				placeholder="Start Time (e.g. 1700 for 5pm)" style="width:205px;"> <input name="endTime" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)" style="width:205px;"> <span id="submitGlyph"
 				class="glyphicon glyphicon-plus-sign"
 				onClick="addInput('nextDeal');"></span>
 				<div id="nextDeal"></div>
@@ -58,8 +58,8 @@
 				<option value="Cocktails">Cocktails</option>
 			</select> <input name="description2" placeholder="Description"> <input
 				name="price2" type="number" placeholder="Price"> <input name="startTime2" type="number"
-				placeholder="Start Time (e.g. 1700 for 5pm)" class="timeInput"> <input name="endTime2" type="number"
-				placeholder="End Time (e.g. 1900 for 7pm)" class="timeInput">
+				placeholder="Start Time (e.g. 1700 for 5pm)" style="width:205px;"> <input name="endTime2" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)" style="width:205px;">
 
 			</div>
 			<div id="div3" style="display: none;">
@@ -69,34 +69,36 @@
 				<option value="Cocktails">Cocktails</option>
 			</select> <input name="description3" placeholder="Description"> <input
 				name="price3" type="number" placeholder="Price"> <input name="startTime3" type="number"
-				placeholder="Start Time (e.g. 1700 for 5pm)" class="timeInput"> <input name="endTime3" type="number"
-				placeholder="End Time (e.g. 1900 for 7pm)" class="timeInput">
-			</div>			</form>
+				placeholder="Start Time (e.g. 1700 for 5pm)" style="width:205px;"> <input name="endTime3" type="number"
+				placeholder="End Time (e.g. 1900 for 7pm)" style="width:205px;">
+			</div>
+			<input name="submit" type="submit" value="Submit">			
+			</form>
 			<br> <br>
 		</div>
 		<button id="backButton">Back</button>
 	</div>
 	<script>
-		document.getElementById("submitGlyph").addEventListener("click",
-				addInput);
-		var counter = 1;
-		var limit = 4;
-		function addInput() {
-			console.log(document.getElementById("div1"));
-			console.log(document.getElementById("div2"));
-			console.log(document.getElementById("div3"));
-			if (counter == limit) {
-				alert("you have reached the limit of adding deals")
-				console.log("working");
-			} else {
-				if (counter == 2) {
-					document.getElementById("div2").removeAttribute("style");
-					console.log("ok");
-				} else if (counter == 3) {
-					document.getElementById("div3").removeAttribute("style");
-					console.log("ok2");
-				}
-				counter++;
+	document.getElementById("submitGlyph").addEventListener("click",
+			addInput);
+	var counter = 1;
+	var limit = 4;
+	function addInput() {
+		console.log(document.getElementById("div1"));
+		console.log(document.getElementById("div2"));
+		console.log(document.getElementById("div3"));
+		if (counter == limit) {
+			alert("you have reached the limit of adding deals")
+			console.log("working");
+		} else {
+			if (counter == 2) {
+				document.getElementById("div2").removeAttribute("style");
+				console.log("ok");
+			} else if (counter == 3) {
+				document.getElementById("div3").removeAttribute("style");
+				console.log("ok2");
+			}
+			counter++;
 				// 			var newdiv = document.createElement('div');
 				// 			newdiv.innerHTML = '<input id="dealType" placeholder="Deal\'s Type"> <input id="description" placeholder="Description"> <input id="price" placeholder="Price"> <input id="startTime" placeholder="Start Time"> <input id="endTime" placeholder="End Time"> ';
 				// 			document.getElementById(divName).appendChild(newdiv);

@@ -29,6 +29,7 @@
 <body>
 	<div id="contentDiv">
 		<h1 id="header">5 O'Clock</h1>
+		<p id="errorMessage">${message}</p>
 		<div id="formDiv">
 			<form id="loginForm" action="login" method="post">
 				 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input name="username"
@@ -37,7 +38,6 @@
 				&nbsp; &nbsp; &nbsp; <span id="submitGlyph"
 					class="glyphicon glyphicon-circle-arrow-right"></span>
 			</form>
-
 		</div>
 	</div>
 	<script src="<c:url value="/resources/Scripts/Login.js" />"></script>

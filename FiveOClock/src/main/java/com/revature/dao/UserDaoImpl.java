@@ -13,15 +13,17 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int checkLogin(String email, String password) {
-
 		Session s = HibernateUtil.getSession();
 		int isUser= 0;
-	     List<User> user=s.createCriteria(User.class).add(Restrictions.eq("email", email)).add(Restrictions.eq("password", password)).list();
-		for(User u : user) {
+	    List<User> user=s.createCriteria(User.class).add(Restrictions.eq("email", email)).add(Restrictions.eq("password", password)).list();
+	    for(User u : user) {
 			if(email.equals(email) && password.equals(password)) {
-			System.out.println(u);
-			isUser=1;
-			}else {
+				if(u.isAdmin()) {
+					isUser=2;
+				} else {
+					isUser=1;
+				}
+			} else {
 				isUser=0;
 			}
 		}

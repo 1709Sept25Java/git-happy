@@ -13,13 +13,12 @@ body {
 	opacity: 0.8;
 	text-align: center;
 	margin: auto;
-    width: 70%;
-    position : relative;
-    top: 300px;
-	padding : 20px;
-	padding-bottom : 45px;
-	border-radius : 20px;
-	
+	width: 70%;
+	position: relative;
+	top: 300px;
+	padding: 20px;
+	padding-bottom: 45px;
+	border-radius: 20px;
 }
 
 input {
@@ -31,14 +30,19 @@ input, textarea {
 	opacity: 1;
 }
 
-#header{
-	color:#eef0b7;
-	opacity:1;
-	font-size : 60px;
+#header {
+	color: #eef0b7;
+	opacity: 1;
+	font-size: 60px;
 }
 
 .glyphicon {
-    font-size: 30px;
-    color : #eef0b7;
-    /* margin-top : 10px; */
+	font-size: 30px;
+	color: #eef0b7;
+	/* margin-top : 10px; */
+}
+
+#errorMessage {
+	color:  #eef0b7;
+	opacity: 1;
 }
