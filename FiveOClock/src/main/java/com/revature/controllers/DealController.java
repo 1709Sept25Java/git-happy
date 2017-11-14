@@ -77,16 +77,27 @@ public class DealController {
 
 	@RequestMapping(value = "/suggest", method = RequestMethod.POST)
 	public String suggest(@RequestParam("venueName") String name, @RequestParam("venueAddress") String address,
-			@RequestParam("venuePhone") String phone, @RequestParam("dealType") String type,
-			@RequestParam("description") String description, @RequestParam("price") double price,
-			@RequestParam("startTime") int start_time, @RequestParam("endTime") int end_time, Model m) {
-		VenueDaoImpl vdi = new VenueDaoImpl();
+			@RequestParam("venuePhone") String phone, @RequestParam("dealType1") String type,
+			@RequestParam("description1") String description, @RequestParam("price1") double price,
+			@RequestParam("startTime1") int start_time, @RequestParam("endTime1") int end_time,
+			@RequestParam("venue") Venue venue, @RequestParam("dealType2") String type2,
+			@RequestParam("description2") String description2, @RequestParam("price2") double price2,
+			@RequestParam("startTime2") int start_time2, @RequestParam("endTime2") int end_time2,
+			@RequestParam("dealType3") String type3, @RequestParam("description3") String description3,
+			@RequestParam("price3") double price3, @RequestParam("startTime3") int start_time3,
+			@RequestParam("endTime3") int end_time3) {
 		Venue newVenue = new Venue(name, address, phone);
-		int suggestion = vdi.addVenueSuggestions(newVenue);
+		VenueDaoImpl vdi = new VenueDaoImpl();
+		int suggestion = vdi.addVenueSuggestions(new Venue(name, address, phone));
 		DealDaoImpl ddi = new DealDaoImpl();
 		int dealSuggestion = ddi.addDealSuggestion(new Deal(type, description, price, start_time, end_time, newVenue));
-		for (int i = 1; i <= 3; i++) {
-
+		if (description2.length() != 0) {
+			int dealSuggestion2 = ddi
+					.addDealSuggestion(new Deal(type2, description2, price2, start_time2, end_time2, newVenue));
+		}
+		if (description3.length() != 0) {
+			int dealSuggestion3 = ddi
+					.addDealSuggestion(new Deal(type3, description3, price3, start_time3, end_time3, newVenue));
 		}
 		return "ThankYou";
 	}

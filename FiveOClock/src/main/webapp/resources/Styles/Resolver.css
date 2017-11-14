@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body{
+	background:  url(https://i.pinimg.com/originals/6d/88/ba/6d88ba056ad66378e8ec95c341004065.jpg) no-repeat center center fixed;;
+}
+
+.contentDiv {
+	background-color: #ffffe6; /*  #2a0000; */
+	opacity: 0.7;
+	text-align: center;
+	margin: auto;
+	margin-top: 20px;
+	width: 70%;
+	position: relative;
+	padding: 20px;
+	padding-bottom: 15px;
+	border-radius: 20px;
+}
+
+.timeInput{
+	width: 90px;
+}

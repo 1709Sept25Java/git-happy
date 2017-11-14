@@ -37,7 +37,7 @@ public class LoginController {
 			System.out.println("loginAttempt method called, login successful");
 			String username=req.getParameter("username");
 			session.setAttribute("username", username);
-			return "Home";// Home
+			return "Search";// Home
 		default:
 			System.out.println("loginAttempt method called, login unsuccessful");
 			return "Login"; // Login/unsuccessful}
